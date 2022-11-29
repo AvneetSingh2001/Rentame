@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="Home"
+        android:icon="@drawable/home"
+        />
+
+<item
+    android:id="@+id/exploreFragment"
+    android:title="Explore"
+    android:icon="@drawable/ic_baseline_explore_24"
+    />
+
+
+    <item
+        android:id="@+id/dealsFragment"
+        android:title="Deals"
+        android:icon="@drawable/ic_baseline_local_fire_department_24"/>
+
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Profile"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        />
+</menu>

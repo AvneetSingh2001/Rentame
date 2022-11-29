@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "356103527862",
+    "project_id": "rentame-511f7",
+    "storage_bucket": "rentame-511f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356103527862:android:37f45669e63d89ad61b517",
+        "android_client_info": {
+          "package_name": "com.developerx.rentame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356103527862-6edm29f5civ7aoa7rfuoqlg30fpbjanp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.developerx.rentame",
+            "certificate_hash": "2a04d9bf14828a6d82ab37bdd9c2bf26427c03b9"
+          }
+        },
+        {
+          "client_id": "356103527862-lpv5jgrp1mue6rg4gk4hrcltq3c79geg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2IIY9VKobsMbnhwzAgy4UaKi3aEPfr80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356103527862-lpv5jgrp1mue6rg4gk4hrcltq3c79geg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
