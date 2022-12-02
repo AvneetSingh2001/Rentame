@@ -3,6 +3,7 @@ package com.developerx.rentame
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.developerx.rentame.daos.UserDao
@@ -10,6 +11,7 @@ import com.developerx.rentame.databinding.ActivityMainBinding
 import com.developerx.rentame.models.Users
 import com.developerx.rentame.screens.AdminActivity
 import com.developerx.rentame.screens.HomeActivity
+import com.developerx.rentame.screens.VerifyActivity
 import com.developerx.rentame.screens.VerifyFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -29,10 +31,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var user : Users
     private lateinit var userDao : UserDao
     private lateinit var auth: FirebaseAuth
+    private var admin: Boolean = false
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater, null, false)
+        binding = ActivityMainBinding.inflate(layoutInflater, null, false)
         setContentView(binding.root)
 
 
@@ -49,21 +53,26 @@ class MainActivity : AppCompatActivity() {
         //}
 
         binding.signInButton.setOnClickListener {
+            admin = false
+
             signIn()
         }
 
         binding.loginAdminButton.setOnClickListener {
-            moveToAdmn()
+            admin = true
+            signIn()
         }
     }
 
     private fun moveToAdmn() {
-        var intent = Intent(this, AdminActivity::class.java)
+        var intent = Intent(this, VerifyActivity::class.java)
         startActivity(intent)
     }
 
 
     private fun signIn() {
+        binding.mainCons.visibility = View.INVISIBLE
+        binding.progCons.visibility = View.VISIBLE
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
@@ -82,6 +91,8 @@ class MainActivity : AppCompatActivity() {
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.e(TAG, "Google sign in failed", e)
+                binding.mainCons.visibility = View.VISIBLE
+                binding.progCons.visibility = View.INVISIBLE
             }
         }
     }
@@ -126,11 +137,17 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun updateUI(firebaseUser: FirebaseUser?) {
+        binding.mainCons.visibility = View.VISIBLE
+        binding.progCons.visibility = View.INVISIBLE
         if(firebaseUser != null){
-            Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show()
-            var intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
+            if(admin) {
+                moveToAdmn()
+            }else {
+                Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show()
+                var intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 

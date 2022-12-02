@@ -32,7 +32,7 @@ class VerifyFragment : Fragment() {
 
         binding.passBtn.setOnClickListener {
             var key:String = binding.etBio.editText!!.text.toString()
-            if(key.equals("envision123*")) {
+            if(key.equals("envision123")) {
                 moveToAdminScreen()
             }else {
                 binding.etBio.error = "Incorrect Key"
@@ -43,8 +43,9 @@ class VerifyFragment : Fragment() {
     }
 
     private fun moveToAdminScreen() {
-//        val action = VerifyFragmentDirections.actionVerifyFragmentToAdminHome()
-//        requireView().findNavController().navigate(action)
+        binding.etBio.editText!!.text.clear()
+        val action = VerifyFragmentDirections.actionVerifyFragmentToAdminActivity()
+        requireView().findNavController().navigate(action)
     }
 
 }

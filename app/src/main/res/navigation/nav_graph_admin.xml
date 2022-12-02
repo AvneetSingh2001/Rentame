@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_adminAccomodationFragment_to_addAccomodationFragment"
             app:destination="@id/addAccomodationFragment" />
+        <action
+            android:id="@+id/action_adminAccomodationFragment_to_detailedAccomodationFragment"
+            app:destination="@id/detailedAccomodationFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminJobFragment"
@@ -23,6 +26,9 @@
         <action
             android:id="@+id/action_adminJobFragment_to_addJobFragment"
             app:destination="@id/addJobFragment" />
+        <action
+            android:id="@+id/action_adminJobFragment_to_detailedJobFragment"
+            app:destination="@id/detailedJobFragment" />
     </fragment>
     <fragment
         android:id="@+id/dealFragment"
@@ -41,7 +47,8 @@
         tools:layout="@layout/fragment_add_accomodation" >
         <action
             android:id="@+id/action_addAccomodationFragment_to_adminAccomodationFragment"
-            app:destination="@id/adminAccomodationFragment" />
+            app:destination="@id/adminAccomodationFragment"
+            app:popUpTo="@id/adminAccomodationFragment" />
     </fragment>
     <fragment
         android:id="@+id/addJobFragment"
@@ -50,6 +57,33 @@
         tools:layout="@layout/fragment_add_job" >
         <action
             android:id="@+id/action_addJobFragment_to_adminJobFragment"
-            app:destination="@id/adminJobFragment" />
+            app:destination="@id/adminJobFragment"
+            app:popUpTo="@id/adminJobFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedAccomodationFragment"
+        android:name="com.developerx.rentame.screens.DetailedAccomodationFragment"
+        android:label="fragment_detailed_accomodation"
+        tools:layout="@layout/fragment_detailed_accomodation" >
+        <argument
+            android:name="accomodation"
+            app:argType="com.developerx.rentame.models.Accomodation" />
+        <argument
+            android:name="mode"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedJobFragment"
+        android:name="com.developerx.rentame.screens.DetailedJobFragment"
+        android:label="fragment_detailed_job"
+        tools:layout="@layout/fragment_detailed_job" >
+        <argument
+            android:name="jobs"
+            app:argType="com.developerx.rentame.models.Jobs" />
+        <argument
+            android:name="mode"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

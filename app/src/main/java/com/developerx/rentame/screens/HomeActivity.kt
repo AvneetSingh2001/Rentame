@@ -13,7 +13,6 @@ import com.developerx.rentame.R
 import com.developerx.rentame.databinding.ActivityHomeBinding
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.dynamiclinks.ktx.dynamicLinks
 import com.google.firebase.ktx.Firebase
 
 class HomeActivity : AppCompatActivity() {
@@ -30,67 +29,27 @@ class HomeActivity : AppCompatActivity() {
 
         auth = Firebase.auth.currentUser
 
-        getDynamicLink()
-
-
-
-    }
-
-            fun getDynamicLink(){
-        Firebase.dynamicLinks
-            .getDynamicLink(intent)
-            .addOnSuccessListener(this) { pendingDynamicLinkData ->
-                // Get deep link from result (may be null if no link is found)
-                var deepLink: Uri? = null
-                if (pendingDynamicLinkData != null) {
-                    deepLink = pendingDynamicLinkData.link
-                }
-
-                // Handle the deep link. For example, open the linked
-                // content, or apply promotional credit to the user's
-                // account.
-                // ...
-                Log.e("Dynamic link ", deepLink.toString())
+        val navController  = findNavController(R.id.fragmentContainerView)
+        navController.setGraph(
+            R.navigation.nav_graph_inner, HomeFragmentArgs(
                 dynamicLink
-                if(deepLink != null){
-                    dynamicLink = deepLink.toString().removePrefix("https://www.example.projecty.com/")
-                    Log.e("News id ", dynamicLink.toString())
-                }
+            ).toBundle())
+        binding!!.bottomNavigation.setupWithNavController(navController)
 
-                // ...
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> showBottomNav()
+                R.id.userAccomodationFragment -> showBottomNav()
+                R.id.userJobFragment -> showBottomNav()
+                R.id.dealsFragment -> showBottomNav()
+                R.id.profileFragment -> showBottomNav()
+                else -> hideBottomNav()
             }
-            .addOnFailureListener(this) { e -> Log.w("Dynamic Link error", "getDynamicLink:onFailure", e)
-
-            }
-            .addOnCompleteListener {
-                if (auth == null){
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }else{
-                    binding!!.mainActivity.visibility = View.VISIBLE
-                    val navController  = findNavController(R.id.fragmentContainerView)
-                    navController.setGraph(
-                        R.navigation.nav_graph_inner, HomeFragmentArgs(
-                            dynamicLink
-                        ).toBundle())
-                    binding!!.bottomNavigation.setupWithNavController(navController)
-
-                    navController.addOnDestinationChangedListener { _, destination, _ ->
-                        when (destination.id) {
-                            R.id.homeFragment -> showBottomNav()
-                            R.id.exploreFragment -> showBottomNav()
-                            R.id.dealsFragment -> showBottomNav()
-                            R.id.profileFragment -> showBottomNav()
-                            else -> hideBottomNav()
-                        }
-                    }
-
-                }
-
-            }
-
+        }
     }
+
+
+
 
 
     private fun showBottomNav() {

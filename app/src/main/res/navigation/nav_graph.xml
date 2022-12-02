@@ -9,5 +9,16 @@
         android:id="@+id/verifyFragment"
         android:name="com.developerx.rentame.screens.VerifyFragment"
         android:label="fragment_verify"
-        tools:layout="@layout/fragment_verify" />
+        tools:layout="@layout/fragment_verify" >
+        <action
+            android:id="@+id/action_verifyFragment_to_adminActivity"
+            app:destination="@id/adminActivity"
+            app:popUpTo="@id/adminActivity"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <activity
+        android:id="@+id/adminActivity"
+        android:name="com.developerx.rentame.screens.AdminActivity"
+        android:label="activity_admin"
+        tools:layout="@layout/activity_admin" />
 </navigation>

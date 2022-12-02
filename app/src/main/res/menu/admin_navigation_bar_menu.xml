@@ -4,7 +4,7 @@
     <item
         android:id="@+id/adminAccomodationFragment"
         android:title="Accomodations"
-        android:icon="@drawable/home"
+        android:icon="@drawable/ic_baseline_apartment_24"
         />
 
     <item
@@ -21,7 +21,7 @@
 
     <item
         android:id="@+id/adminHome"
-        android:title="Services"
+        android:title="Subscribers"
         android:icon="@drawable/ic_baseline_account_circle_24"
         />
 </menu>

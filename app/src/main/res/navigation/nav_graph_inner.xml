@@ -17,11 +17,6 @@
             android:defaultValue="null" />
     </fragment>
     <fragment
-        android:id="@+id/exploreFragment"
-        android:name="com.developerx.rentame.screens.ExploreFragment"
-        android:label="fragment_explore"
-        tools:layout="@layout/fragment_explore" />
-    <fragment
         android:id="@+id/dealsFragment"
         android:name="com.developerx.rentame.screens.DealFragment"
         android:label="fragment_deal"
@@ -32,4 +27,60 @@
         android:name="com.developerx.rentame.screens.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/userJobFragment"
+        android:name="com.developerx.rentame.screens.UserJobFragment"
+        android:label="fragment_user_job"
+        tools:layout="@layout/fragment_user_job" >
+        <action
+            android:id="@+id/action_userJobFragment_to_detailedJobFragment2"
+            app:destination="@id/detailedJobFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/userAccomodationFragment"
+        android:name="com.developerx.rentame.screens.UserAccomodationFragment"
+        android:label="fragment_user_accomodation"
+        tools:layout="@layout/fragment_user_accomodation" >
+
+        <action
+            android:id="@+id/action_userAccomodationFragment_to_detailedAccomodationFragment2"
+            app:destination="@id/detailedAccomodationFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedAccomodationFragment2"
+        android:name="com.developerx.rentame.screens.DetailedAccomodationFragment"
+        android:label="fragment_detailed_accomodation"
+        tools:layout="@layout/fragment_detailed_accomodation" >
+        <argument
+            android:name="accomodation"
+            app:argType="com.developerx.rentame.models.Accomodation" />
+        <action
+            android:id="@+id/action_detailedAccomodationFragment2_to_userSubscriptionFragment2"
+            app:destination="@id/userSubscriptionFragment2" />
+        <argument
+            android:name="mode"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedJobFragment2"
+        android:name="com.developerx.rentame.screens.DetailedJobFragment"
+        android:label="fragment_detailed_job"
+        tools:layout="@layout/fragment_detailed_job" >
+        <argument
+            android:name="jobs"
+            app:argType="com.developerx.rentame.models.Jobs" />
+        <action
+            android:id="@+id/action_detailedJobFragment2_to_userSubscriptionFragment2"
+            app:destination="@id/userSubscriptionFragment2" />
+        <argument
+            android:name="mode"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/userSubscriptionFragment2"
+        android:name="com.developerx.rentame.screens.UserSubscriptionFragment"
+        android:label="fragment_user_subscription"
+        tools:layout="@layout/fragment_user_subscription" />
 </navigation>
